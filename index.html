@@ -55,11 +55,18 @@
 			</div>
 			<div v-else>
 				<img v-bind:src="current.message"> <br>
-				<button v-on:click="again">Take again</button>
+				<div id="takeagain">
+					<button v-on:click="again">Take again</button>
+				</div>
 			</div>
 		</div>
 
+		<div class="footer">
+			<p>{{footerMessage}}</p>
+			<p>{{available}} <a href="https://github.com/pjohnst5/creative3">GitHub</a></p>
+		</div>
 	</div>
+
 
 
 

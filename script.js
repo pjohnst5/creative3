@@ -3,6 +3,8 @@ var app = new Vue({
 	data: {
     title: 'The Doggo Quiz',
 		message: 'Take the quiz to find out which dog is best for you!',
+    footerMessage: 'Created by Paul Johnston',
+    available: 'Source code available on ',
     answers: [],
     current: {},
     finishedQuiz: false,

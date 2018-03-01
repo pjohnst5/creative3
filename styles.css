@@ -52,3 +52,14 @@ button {
 button:disabled {
 	opacity: 0.5;
 }
+
+
+.footer {
+	background-color: rgba(248,252,255, 0.3);
+	padding: 5px;
+	font-size: 20px;
+}
+
+#takeagain {
+	padding: 20px;
+}
