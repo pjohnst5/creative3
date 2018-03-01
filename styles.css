@@ -1,0 +1,54 @@
+body {
+	font-size: 30px;
+	text-align: center;
+	background-image: url("photos/dogs.jpg");
+    background-position: fill;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+}
+
+body h5 {
+	text-align: left;
+}
+
+#main {
+	margin: auto;
+	width: 60%;
+	background-color: rgba(174,213,255, 0.8);
+	height: 100%;
+	padding: 15px;
+	overflow:scroll;
+	overflow-x: hidden;
+}
+
+.question {
+	text-align: left;
+	padding: 10px;
+	padding-left: 40px;
+	background-color: rgba(248,252,255, 0.3);
+
+}
+
+form input {
+	margin: 20px;
+}
+
+input[type='radio'] { 
+	transform: scale(2); 
+}
+
+#buttondiv {
+	padding: 40px;
+}
+
+button {
+	background-color: #e7e7e7; 
+	color: black;
+	font-size: 30px;
+}
+
+button:disabled {
+	opacity: 0.5;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="styles.css"/>
+</head>
+
+<body>
+
+	<div id="main">
+		<h1>{{title}}</h1> 
+		<p>{{message}}</p>
+
+		<div v-if="!finishedQuiz">
+			<div class="question">
+				<h5>Question 1</h5>
+				<div class="answers">
+					<p>What would you to do with a free Saturday afternoon?</p>
+					<form action="">
+					  <input type="radio" id="q0A" name="answer0" v-on:click="answeredQuestion(0,'A')"><label for="q0A">Watch a movie</label><br>
+					  <input type="radio" id="q0B" name="answer0" v-on:click="answeredQuestion(0,'B')"><label for="q0B">Play a sport</label><br>
+					  <input type="radio" id="q0C" name="answer0" v-on:click="answeredQuestion(0,'C')"><label for="q0C">Get ahead on homework</label>
+					</form>		
+				</div>
+			</div>
+			<div class="question">
+				<h5>Question 2</h5>
+				<div class="answers">
+					<p>Which of the following best describes your housing arrangement?</p>
+					<form action="">
+					  <input type="radio" id="q1A" name="answer1" v-on:click="answeredQuestion(1,'A')"><label for="q1A">Apartment</label><br>
+					  <input type="radio" id="q1B" name="answer1" v-on:click="answeredQuestion(1,'B')"><label for="q1B">Suburban house</label><br>
+					  <input type="radio" id="q1C" name="answer1" v-on:click="answeredQuestion(1,'C')"><label for="q1C">Countryside house</label>
+					</form>	
+				</div>
+			</div>
+			<div class="question">
+				<h5>Question 3</h5>	
+				<div class="answers">
+					<p>Do you think dogs are better than cats?</p>
+					<form action="">
+					  <input type="radio" id="q2A" name="answer2" v-on:click="answeredQuestion(2,'A')"><label for="q2A">Yes!</label><br>
+					  <input type="radio" id="q2B" name="answer2" v-on:click="answeredQuestion(2,'A')"><label for="q2B">Si!</label><br>
+					  <input type="radio" id="q2C" name="answer2" v-on:click="answeredQuestion(2,'A')"><label for="q2C">Com Certeza!</label> 
+					</form>
+				</div>
+			</div>
+			<div id="buttondiv">
+				<button v-on:click="finishedQuizFunction" :disabled="!enableSubmit">Submit</button>
+			</div>
+			
+		</div>
+		<div v-else>
+			<div v-if="loadingResult">
+				<p>Loading...</p>
+			</div>
+			<div v-else>
+				<img v-bind:src="current.message"> <br>
+				<button v-on:click="again">Take again</button>
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="script.js"></script>
+
+	
+</body>
+</html>
+
