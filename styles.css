@@ -58,6 +58,7 @@ button:disabled {
 	background-color: rgba(248,252,255, 0.3);
 	padding: 5px;
 	font-size: 20px;
+	margin-bottom: 10px;
 }
 
 #takeagain {
