@@ -28,7 +28,7 @@ var app = new Vue({
         } else {
           this.breed = 'Dingo';
         }
-        
+
       } else if (this.answers[0].actualAnswer === 'B') {
         if (this.answers[1].actualAnswer === 'A') {
           this.breed = 'Whippet';
@@ -54,7 +54,8 @@ var app = new Vue({
         this.message = 'A ' + this.breed + ' is best for you!';
       }
 
-      fetch('https://dog.ceo/api/breed/' + this.breed + '/images/random').then(response => {
+			const url = 'https://dog.ceo/api/breed/' + this.breed.toLowerCase() + '/images/random';
+      fetch(url).then(response => {
        return response.json();
       }).then(json => {
          this.current = json;
@@ -73,7 +74,7 @@ var app = new Vue({
       }
       console.log("answer for " + num + " is now " + this.answers[num].actualAnswer);
       var size = 0;
-      
+
       for(var prop in this.answers) {
         if(this.answers.hasOwnProperty(prop))
             ++size;
@@ -90,4 +91,3 @@ var app = new Vue({
 
   }, //end methods
 });
-
