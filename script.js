@@ -13,6 +13,14 @@ var app = new Vue({
     enableSubmit: false,
     breed: '',
     subBreed: '',
+    vowels: ['A', 'E', 'I', 'O', 'U'],
+    answersAsString: '',
+    answersToBreed: {
+      "AAA": {
+        "url": "/pug", 
+        "name": "Pug"
+      }
+    },
 
 	}, //end data
   methods: {
@@ -20,41 +28,47 @@ var app = new Vue({
       this.finishedQuiz = true;
       this.loadingResult = true;
 
-      if (this.answers[0].actualAnswer === 'A') {
-        if (this.answers[1].actualAnswer === 'A') {
-          this.breed = 'Chihuahua';
-        } else if (this.answers[1].actualAnswer ==='B') {
-          this.breed = 'Beagle';
-        } else {
-          this.breed = 'Dingo';
-        }
+      this.answersToString()
+      console.log(this.answersAsString)
+      // if (this.answers[0].actualAnswer === 'A') {
+      //   if (this.answers[1].actualAnswer === 'A') {
+      //     this.breed = 'Chihuahua';
+      //   } else if (this.answers[1].actualAnswer ==='B') {
+      //     this.breed = 'Beagle';
+      //   } else {
+      //     this.breed = 'Dingo';
+      //   }
 
-      } else if (this.answers[0].actualAnswer === 'B') {
-        if (this.answers[1].actualAnswer === 'A') {
-          this.breed = 'Whippet';
-        } else if (this.answers[1].actualAnswer ==='B') {
-          this.breed = 'Labrador';
-        } else {
-          this.breed = 'Akita';
-        }
+      // } else if (this.answers[0].actualAnswer === 'B') {
+      //   if (this.answers[1].actualAnswer === 'A') {
+      //     this.breed = 'Whippet';
+      //   } else if (this.answers[1].actualAnswer ==='B') {
+      //     this.breed = 'Labrador';
+      //   } else {
+      //     this.breed = 'Akita';
+      //   }
+      // } else {
+      //   if (this.answers[1].actualAnswer === 'A') {
+      //     this.breed = 'Kelpie';
+      //   } else if (this.answers[1].actualAnswer ==='B') {
+      //     this.breed = 'Germanshepherd';
+      //   } else {
+      //     this.breed = 'Leonberg';
+      //   }
+      // }
+
+      name = this.answersToBreed[this.answersAsString].name;
+
+      // this.title = this.breed;
+      if (this.vowels.includes(name.charAt(0))) {
+      // if (name.charAt(0) === 'A' || name.charAt(0) === 'E' || name.charAt(0) === 'I' || name.charAt(0) === 'O' || name.charAt(0) === 'U'){
+        this.message = 'An ' + name + ' is best for you!';
       } else {
-        if (this.answers[1].actualAnswer === 'A') {
-          this.breed = 'Kelpie';
-        } else if (this.answers[1].actualAnswer ==='B') {
-          this.breed = 'Germanshepherd';
-        } else {
-          this.breed = 'Leonberg';
-        }
+        this.message = 'A ' + name + ' is best for you!';
       }
-
-      this.title = this.breed;
-      if (this.breed.charAt(0) === 'A' || this.breed.charAt(0) === 'E' || this.breed.charAt(0) === 'I' || this.breed.charAt(0) === 'O' || this.breed.charAt(0) === 'U'){
-        this.message = 'An ' + this.breed + ' is best for you!';
-      } else {
-        this.message = 'A ' + this.breed + ' is best for you!';
-      }
-
-			const url = 'https://dog.ceo/api/breed/' + this.breed.toLowerCase() + '/images/random';
+      url = this.fullUrl(this.answersToBreed[this.answersAsString].url)
+      console.log(url)
+			// const url = 'https://dog.ceo/api/breed/' + this.breed.toLowerCase() + '/images/random';
       fetch(url).then(response => {
        return response.json();
       }).then(json => {
@@ -84,6 +98,17 @@ var app = new Vue({
       if (size === 3){
         this.enableSubmit = true;
       }
+    },
+    answersToString: function() {
+      console.log(this.answers)
+      for (var key in this.answers) {
+        if (this.answers.hasOwnProperty(key)) {
+          this.answersAsString += this.answers[key].actualAnswer
+        }
+      }
+    },
+    fullUrl: function(breed) {
+      return 'https://dog.ceo/api/breed' + breed + '/images/random';
     },
     again : function() {
       location.reload();
